@@ -2,7 +2,7 @@
 # Lecture#20; Leetcode#300
 # type nums: List[int]
 # rtype: int
-def lengthOfLIS(nums): 
+def LIS(nums): 
     if len(nums)==0: return 0
     dp = [1]
     for i in range(1, len(nums)):
