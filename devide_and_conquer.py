@@ -9,17 +9,16 @@ def func(x):
 
 # Recurssive Method
 def bisection(a,b):
-	if S
-	if (b-a) <0.01:
-		return a
+    if (b-a) <0.01:
+	return a
+    else:
+	m = (a+b)/2
+	if func(m)  == 0:
+	    return m
+	elif func(m) <0:
+	    return bisection(m,b)
 	else:
-		m = (a+b)/2
-		if func(m)  == 0:
-			return m
-		elif func(m) <0:
-			return bisection(m,b)
-		else:
-			return bisection(a,m)
+	    return bisection(a,m)
 
 # Iterative Method          
 def bisection2(a,b): 
