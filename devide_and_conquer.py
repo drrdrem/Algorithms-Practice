@@ -10,7 +10,7 @@ def func(x):
 # Recurssive Method
 def bisection(a,b):
     if (b-a) <0.01:
-            return a
+        return a
     else:
         m = (a+b)/2
         if func(m)  == 0:
