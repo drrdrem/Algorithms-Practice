@@ -8,19 +8,19 @@ def func(x):
     return np.sin(x) - 100/np.sqrt(x) + x**4
 
 # Recurssive Method
-def bisection(a,b): 
-	c = a 
+def bisection(a,b):
+	if S
 	if (b-a) <0.01:
-	  return c 
+		return a
 	else:
-	  m = (a+b)/2
-	  if func(m)  == 0:
-	    c=m
-	  elif func(m) <0:
-	    return bisection(m,b)
-	  else:
-	    return bisection(a,m)
-   
+		m = (a+b)/2
+		if func(m)  == 0:
+			return m
+		elif func(m) <0:
+			return bisection(m,b)
+		else:
+			return bisection(a,m)
+
 # Iterative Method          
 def bisection2(a,b): 
     m = a 
@@ -33,7 +33,7 @@ def bisection2(a,b):
         else: 
             a = m 
     return c
-             
+
 
 # HW05P4; LeetCode#4
 # type nums1: List[int]
