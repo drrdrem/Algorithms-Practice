@@ -1,3 +1,40 @@
+
+# Lecture#13; LeetCode#None
+# type a: float
+# type b: float
+# rtype: float
+import numpy as np
+def func(x): 
+    return np.sin(x) - 100/np.sqrt(x) + x**4
+
+# Recurssive Method
+def bisection(a,b): 
+	c = a 
+	if (b-a) <0.01:
+	  return c 
+	else:
+	  m = (a+b)/2
+	  if func(m)  == 0:
+	    c=m
+	  elif func(m) <0:
+	    return bisection(m,b)
+	  else:
+	    return bisection(a,m)
+   
+# Iterative Method          
+def bisection2(a,b): 
+    m = a 
+    while ((b-a) >= 0.01): 
+        m = (a+b)/2
+        if (func(m) == 0.0): 
+            break
+        if (func(m)*func(a) < 0): 
+            b = m 
+        else: 
+            a = m 
+    return c
+             
+
 # HW05P4; LeetCode#4
 # type nums1: List[int]
 # type nums2: List[int]
