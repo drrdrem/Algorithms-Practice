@@ -3,7 +3,7 @@ from collections import deque
 # type root: TreeNode
 # rtype: List[List[int]]
 def BFS(root):
-	if not root: return 
+    if not root: return 
 
     queue, res = deque([root]), []
     while queue:
