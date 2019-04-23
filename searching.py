@@ -19,4 +19,20 @@ def BFS(root):
     return res
 
 
+# Lecture#8; LeetCode#106
+# type root: TreeNode
+# type sum: int
+# rtype: bool
+def DFS(root, sum):
+	if not root: return
 	
+    stack = [(root, root.val)]
+    while stack:
+        vertex, accumu_val = stack.pop()
+        if not vertex.left and not vertex.right:
+            if accumu_val == sum: return True
+        if vertex.right:
+            stack.append((vertex.right, accumu_val+vertex.right.val))
+        if vertex.left:
+            stack.append((vertex.left, accumu_val+vertex.left.val))
+    return False
