@@ -24,7 +24,7 @@ def BFS(root):
 # type sum: int
 # rtype: bool
 def DFS(root, sum):
-	if not root: return
+    if not root: return
 	
     stack = [(root, root.val)]
     while stack:
