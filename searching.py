@@ -36,3 +36,25 @@ def DFS(root, sum):
         if vertex.left:
             stack.append((vertex.left, accumu_val+vertex.left.val))
     return False
+
+
+# Lecture#7; LeetCode#785
+# type graph: List[List[int]]
+# rtype: bool
+def isBipartite(self, graph):
+    visit = [False]*len(graph)
+    q = [0];
+    while q:
+        level = []
+        for _ in range(len(q)):
+            node = q.pop(0)
+            level.append(node)
+            visit[node] = True
+            for n in graph[node]:
+                if not visit[n]:                    
+                    q.append(n)
+                
+        for node in level:
+            for n in graph[node]:
+                if n in level: return False
+    return True
