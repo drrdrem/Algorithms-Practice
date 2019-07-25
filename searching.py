@@ -1,3 +1,5 @@
+import heapq
+
 # Lecture#6; LeetCode#102
 # type root: TreeNode
 # rtype: List[List[int]]
@@ -102,3 +104,28 @@ def connected_Components(c_tuple):
             res.append(DFS(graph, tmp, v, visit, c_tuple)) 
             
     return res 
+
+
+
+# Lecture#12;
+# type graph: dic{dic}; starting_vertex: key
+# rtype: shortest_dis: dic
+def Dikestra(graph, start_vertex):
+    shortest_dis = {vertex: float('infinity') for vertex in graph}
+    shortest_dis[start_vertex] = 0
+
+    priority_q = [(0, starting_vertex)]
+    while len(priority_q) > 0:
+        current_distance, current_vertex = heapq.heappop(priority_q)
+
+        if current_distance > shortest_dis[current_vertex]:
+            continue
+
+        for neighbor, weight in graph[current_vertex].items():
+            distance = current_distance + weight
+
+            if distance < shortest_dis[neighbor]:
+                shortest_dis[neighbor] = distance
+                heapq.heappush(priority_q, (distance, neighbor))
+
+    return distances
