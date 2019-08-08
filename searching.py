@@ -105,7 +105,49 @@ def connected_Components(c_tuple):
             
     return res 
 
+# Lecture#9;
+# type graph: dic{dic};
+# rtype: list
+# Topological Order
+# A recursive function used by topologicalSort 
+def topologicalSortrecur(v,stack): 
 
+    for i in graph[v]: 
+        if i in stack: 
+            topologicalSortrecur(i,visited,stack) 
+
+    stack.insert(0,v) 
+
+def topologicalSort(graph): 
+    stack =[] 
+
+    for i in graph: 
+        if i not in stack: 
+            topologicalSortrecur(i,stack) 
+
+    return stack[::-1] 
+
+# An iterative version
+def topologicalSort2(graph):
+    dfs = []
+    stack = []
+
+    for i in graph:
+        if i not in stack:
+            dfs.append((False, i))
+        while dfs:
+            node = dfs.pop()
+            if node[0]:
+                stack.append(node[1])
+                continue
+            dfs.append((True, node[1]))
+            children = graph[node[1]]
+
+            for j in children:
+                if j not in stack:
+                    dfs.append((False, j))
+
+    return stack[::-1]
 
 # Lecture#12;
 # type graph: dic{dic}; starting_vertex: key
