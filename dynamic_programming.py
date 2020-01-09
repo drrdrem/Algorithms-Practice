@@ -87,23 +87,22 @@ def Nussinov(seq):
 def sequence_alignment(x, y, pxy=1, pgap=1):
     m, n = len(x), len(y)
     dp = [[0 for i in range(n+m+1)] for j in range(n+m+1)]
-    
+
     for i in range(n+m+1):
         dp[i][0] = i*pgap
         dp[0][i] = i*pgap
-    
+
     for i in range(1, m+1):
         for j in range(1, n+1):
             if x[i-1]==y[j-1]: dp[i][j] = dp[i-1][j-1]
             else: dp[i][j] = min(dp[i-1][j-1]+pxy, dp[i-1][j]+pgap, dp[i][j-1]+pgap)
-    
-    
+
     # Recondtruction of Aligment
     l = n + m
     i, j = m, n
-    x_pos = y_pos = 1
+    x_pos = y_pos = 0
     x_res, y_res = ['*']*(l+1), ['*']*(l+1)
-    
+
     while not (not i or not j):
         if x[i-1]==y[j-1]:
             x_pos -= 1
@@ -112,7 +111,7 @@ def sequence_alignment(x, y, pxy=1, pgap=1):
             y_res[y_pos] = y[j-1]
             i -= 1
             j -= 1
-            
+
         elif dp[i-1][j-1]+pxy==dp[i][j]:
             x_pos -= 1
             x_res[x_pos] = x[i-1]
@@ -127,32 +126,38 @@ def sequence_alignment(x, y, pxy=1, pgap=1):
             y_pos -= 1
             y_res[y_pos] = '_'
             i -= 1
+
         elif dp[i][j-1]+pgap==dp[i][j]:
             x_pos -= 1
             x_res[x_pos] = '_'
             y_pos -= 1
             y_res[y_pos] = y[j-1]
             j -= 1
-            
+
     while x_pos>0:
         if i>0: 
             x_pos -= 1
             i -= 1
             x_res[x_pos] = x[i]
+
         else:
             x_pos -= 1
             x_res[x_pos] = '_'
-            
+
     while y_pos>0:
         if j>0: 
             y_pos -= 1
             j -= 1
             y_res[y_pos] = y[j]
+
         else:
             y_pos -= 1
             y_res[y_pos] = '_'
-            
-    return x_res, y_res
+
+    x_res = list(filter(lambda x : x != '*', x_res))
+    y_res = list(filter(lambda x : x != '*', y_res))
+    
+    return "".join(x_res), "".join(y_res)
 
 
 # Lecture#20; Leetcode#300
